@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Hadia ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Georgia,serif;
+ color:white;
+ text-align:center;
+ background:linear-gradient(135deg,#16002d,#650052,#190039);
+ min-height:100vh;
+ overflow-x:hidden;
+}
+.page{
+ display:none;
+ min-height:100vh;
+ padding:35px 18px;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ animation:fade 1s;
+}
+.page.active{display:flex}
+@keyframes fade{
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
+}
+h1{
+ color:#ffdbf2;
+ font-size:clamp(32px,8vw,52px);
+ text-shadow:0 0 18px #ff45bc;
+}
+h2{color:#ffd1ed}
+p{
+ font-size:18px;
+ line-height:1.8;
+ max-width:600px;
+}
+button{
+ border:0;
+ padding:14px 25px;
+ margin:12px;
+ border-radius:30px;
+ background:linear-gradient(45deg,#ff42ae,#ff9bca);
+ color:#40002c;
+ font-weight:bold;
+ font-size:17px;
+ cursor:pointer;
+ box-shadow:0 0 18px #ff64c5;
+}
+button:active{transform:scale(.95)}
+input{
+ padding:14px;
+ border-radius:15px;
+ border:2px solid pink;
+ font-size:18px;
+ text-align:center;
+ max-width:260px;
+}
+.heart{
+ font-size:45px;
+ animation:beat 1s infinite;
+}
+@keyframes beat{
+ 50%{transform:scale(1.25)}
+}
+.stars{
+ position:fixed;
+ top:0;left:0;
+ width:100%;height:100%;
+ pointer-events:none;
+ z-index:-1;
+ background-image:
+ radial-gradient(white 1px,transparent 1px),
+ radial-gradient(#ffc5ed 1px,transparent 1px);
+ background-size:55px 55px,90px 90px;
+ animation:twinkle 4s infinite alternate;
+}
+@keyframes twinkle{to{opacity:.35}}
+.balloon{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:65px;height:85px;
+ border-radius:50%;
+ margin:12px;
+ font-size:28px;
+ cursor:pointer;
+ animation:float 2s infinite alternate;
+}
+@keyframes float{
+ to{transform:translateY(-18px)}
+}
+.balloon:nth-child(odd){background:#ff4da6}
+.balloon:nth-child(even){background:#8d63ff}
+.balloon:nth-child(3n){background:#ffbd45}
+#balloons{max-width:500px}
+.cake{
+ font-size:100px;
+ animation:float 2s infinite alternate;
+}
+.candle{
+ font-size:45px;
+ cursor:pointer;
+ display:inline-block;
+}
+.flame{animation:flicker .4s infinite alternate}
+@keyframes flicker{
+ to{transform:scale(1.2);filter:brightness(1.5)}
+}
+.hidden{display:none!important}
+.wishes{
+ background:#ffffff18;
+ border:1px solid #ffffff55;
+ border-radius:22px;
+ padding:20px;
+ max-width:600px;
+ margin:15px auto;
+}
+#message{color:#ffe0f3}
+</style>
+</head>
+
+<body>
+<div class="stars"></div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+ <div class="heart">❤️</div>
+ <h1>Happy Birthday Hadia!</h1>
+ <h2>A Beautiful Day For A Beautiful Soul ✨</h2>
+ <div class="wishes">
+  <p>May Allah bless your life with endless happiness,
+  good health, peace and success.</p>
+  <p>May every prayer of your heart be answered
+  and every dream come true. Ameen! 🤲</p>
+ </div>
+ <p>A little surprise has been made just for you...</p>
+ <button onclick="showPage(2)">Click Here For Surprise 🎁</button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+ <h1>One Little Question 💗</h1>
+ <p>To unlock your birthday surprise, enter your date of birth.</p>
+ <input type="date" id="dob">
+ <p id="error" style="color:#ffb6c9"></p>
+ <button onclick="checkDOB()">Unlock My Surprise 🔐</button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+ <h1>Pop The Balloons! 🎈</h1>
+ <p>Tap every balloon to pop it and reveal your next surprise.</p>
+ <div id="balloons"></div>
+ <h2 id="count">Balloons left: 8</h2>
+ <button id="balloonNext" class="hidden" onclick="showPage(4)">
+ Continue ❤️
+ </button>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+ <h1>A Cake Just For You! 🎂</h1>
+ <p>Make a wish, Hadia!</p>
+ <div class="cake">🎂</div>
+ <div id="candles">
+  <span class="candle" onclick="blow(this)">🕯️</span>
+  <span class="candle" onclick="blow(this)">🕯️</span>
+  <span class="candle" onclick="blow(this)">🕯️</span>
+ </div>
+ <p>Tap each candle to blow it out!</p>
+ <h2 id="candleMsg">Candles still glowing ✨</h2>
+ <button id="cakeNext" class="hidden" onclick="showPage(5)">
+ Next Surprise 💖
+ </button>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+ <div class="heart">💗</div>
+ <h1>Make A Wish, Hadia!</h1>
+ <div class="wishes">
+  <p>May Allah fill your days with smiles
+  and your nights with peace.</p>
+  <p>May you always be surrounded by love,
+  kindness and beautiful people.</p>
+  <p>May success follow you wherever you go.
+  Ameen! 🤲</p>
+ </div>
+ <button onclick="showPage(6)">One More Surprise 🎁</button>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page" id="page6">
+ <h1>Let's Enjoy The Cake! 🍰</h1>
+ <div class="cake">🍰</div>
+ <p>A sweet celebration for the sweetest person!</p>
+ <button onclick="eatCake()">Take A Bite 😋</button>
+ <h2 id="biteMessage"></h2>
+ <button id="finalNext" class="hidden" onclick="showPage(7)">
+ Final Birthday Wishes 💕
+ </button>
+</section>
+
+<!-- PAGE 7 -->
+<section class="page" id="page7">
+ <div class="heart">❤️</div>
+ <h1>Happy Birthday Once Again, Hadia!</h1>
+ <div class="wishes">
+  <p>May your life shine brighter than the stars.</p>
+  <p>May Allah protect you from every sadness
+  and grant you countless reasons to smile.</p>
+  <p>May your future be full of blessings,
+  love, peace and success.</p>
+  <p>Stay happy, stay blessed and keep smiling forever.</p>
+  <h2>Ameen Sum Ameen! 🤲</h2>
+ </div>
+ <h1>🎉❤️🎂❤️🎉</h1>
+ <p>Made with love, just for you.</p>
+ <button onclick="showPage(1)">Replay Surprise 🔁</button>
+</section>
+
+<script>
+function showPage(number){
+ document.querySelectorAll(".page").forEach(p=>{
+  p.classList.remove("active");
+ });
+ document.getElementById("page"+number).classList.add("active");
+ window.scrollTo(0,0);
+}
+
+function checkDOB(){
+ const dob=document.getElementById("dob").value;
+ const error=document.getElementById("error");
+ if(dob==="2007-11-28"){
+  showPage(3);
+  createBalloons();
+ }else{
+  error.textContent="Oops! That's not the correct date. Try again ❤️";
+ }
+}
+
+let popped=0;
+function createBalloons(){
+ const area=document.getElementById("balloons");
+ area.innerHTML="";
+ popped=0;
+ document.getElementById("count").textContent="Balloons left: 8";
+ document.getElementById("balloonNext").classList.add("hidden");
+
+ for(let i=0;i<8;i++){
+  const b=document.createElement("span");
+  b.className="balloon";
+  b.textContent="🎈";
+  b.onclick=function(){
+   if(b.textContent==="🎈"){
+    b.textContent="💥";
+    b.style.background="transparent";
+    popped++;
+    document.getElementById("count").textContent=
+    "Balloons left: "+(8-popped);
+    if(popped===8){
+     document.getElementById("count").textContent=
+     "Amazing! You popped them all! 🎉";
+     document.getElementById("balloonNext").classList.remove("hidden");
+    }
+   }
+  };
+  area.appendChild(b);
+ }
+}
+
+let candlesLeft=3;
+function blow(candle){
+ if(candle.textContent==="🕯️"){
+  candle.textContent="🌫️";
+  candlesLeft--;
+ }
+ if(candlesLeft===0){
+  document.getElementById("candleMsg").textContent=
+  "Wish made! May all your dreams come true! ❤️";
+  document.getElementById("cakeNext").classList.remove("hidden");
+ }
+}
+
+let bites=0;
+function eatCake(){
+ bites++;
+ const messages=[
+  "Yummy! One sweet bite! 😋",
+  "Another bite full of happiness! 🍰",
+  "The cake is all yours, Hadia! ❤️"
+ ];
+ document.getElementById("biteMessage").textContent=
+ messages[Math.min(bites-1,2)];
+ if(bites>=3){
+  document.getElementById("finalNext").classList.remove("hidden");
+ }
+}
+</script>
+</body>
+</html>
